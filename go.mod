@@ -1,4 +1,4 @@
-module github.com/emachadomartins/kollekhtor-orchestrator
+module github.com/emachadomartins/kollekthor-orkhestrathor
 
 go 1.22.4
 

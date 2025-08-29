@@ -7,8 +7,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/emachadomartins/kollekhtor-orchestrator/env"
-	"github.com/emachadomartins/kollekhtor-orchestrator/queues"
+	"github.com/emachadomartins/kollekthor-orkhestrathor/env"
+	"github.com/emachadomartins/kollekthor-orkhestrathor/queues"
 )
 
 func main() {
