@@ -2,6 +2,7 @@ package queues
 
 import (
 	"fmt"
+
 	amqp "github.com/rabbitmq/amqp091-go"
 )
 
@@ -20,11 +21,22 @@ func (c *Queue) Close() {
 	if c.Connection != nil {
 		_ = c.Connection.Close()
 	}
-	fmt.Printf("Closed connection to queue `%s` in `%s`\n", c.name, c.url)
+	fmt.Printf(
+		"Closed connection to queue `%s` in `%s`\n",
+		c.name,
+		c.url,
+	)
 }
 
-func NewConsumer(queueURL, queueName string) (*Queue, error) {
-	fmt.Printf("Start consuming queue `%s` in `%s`\n", queueName, queueURL)
+func NewConsumer(
+	queueURL,
+	queueName string,
+) (*Queue, error) {
+	fmt.Printf(
+		"Start consuming queue `%s` in `%s`\n",
+		queueName,
+		queueURL,
+	)
 	conn, err := amqp.Dial(queueURL)
 	if err != nil {
 		return nil, err
@@ -45,6 +57,7 @@ func NewConsumer(queueURL, queueName string) (*Queue, error) {
 		false,
 		nil,
 	)
+
 	if err != nil {
 		_ = ch.Close()
 		_ = conn.Close()

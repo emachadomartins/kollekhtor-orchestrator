@@ -16,7 +16,9 @@ func loadEnv() environment {
 	queueURL := os.Getenv("QUEUE_URL")
 
 	if queueURL == "" {
-		panic(errors.New("QUEUE_URL env variable not set"))
+		panic(
+			errors.New("QUEUE_URL env variable not set"),
+		)
 	}
 
 	queueName := os.Getenv("QUEUE_NAME")
