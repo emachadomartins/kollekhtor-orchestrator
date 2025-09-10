@@ -6,8 +6,8 @@ import (
 )
 
 type CreationTask struct {
-	ExecutionID string `json:"execution_id"`
-	Query       string `json:"query"`
+	ExecutionID string         `json:"execution_id"`
+	Query       map[string]any `json:"query"`
 }
 
 type ExecutionTask struct {
@@ -31,6 +31,6 @@ func Build(raw []byte) (*CreationTask, error) {
 
 	return &CreationTask{
 		ExecutionID: dataMap["execution_id"].(string),
-		Query:       dataMap["query"].(string),
+		Query:       dataMap["query"].(map[string]any),
 	}, nil
 }

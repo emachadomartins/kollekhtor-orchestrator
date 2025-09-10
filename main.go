@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"os"
@@ -33,8 +34,13 @@ func main() {
 	for {
 		select {
 		case msg := <-consumer.Messages:
-			task.Build(msg.Body)
-			fmt.Printf("Received a message: %s\n", msg.Body)
+			creationTask, err := task.Build(msg.Body)
+			if err != nil {
+				fmt.Printf("Error processing message: %s\n", err.Error())
+			}
+
+			taskJSON, _ := json.Marshal(creationTask)
+			fmt.Printf("Received a message: %s\n", taskJSON)
 		case sig := <-sigs:
 			fmt.Printf("Shutting down gracefully on signal: %s\n", sig)
 			return
